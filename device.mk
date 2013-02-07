@@ -20,113 +20,122 @@ $(call inherit-product, device/htc/msm7x30-common/msm7x30.mk)
 #$(call inherit-product, device/htc/common/common.mk)
 
 # HTC Audio
-$(call inherit-product, device/htc/ace/media_a1026.mk)
-$(call inherit-product, device/htc/ace/media_htcaudio.mk)
+$(call inherit-product, device/htc/runnymede/media_a1026.mk)
+$(call inherit-product, device/htc/runnymede/media_htcaudio.mk)
 
 # Inherit qcom proprietary blobs
 $(call inherit-product, vendor/qcom/proprietary/qcom-vendor.mk)
 
-DEVICE_PACKAGE_OVERLAYS += device/htc/ace/overlay
+DEVICE_PACKAGE_OVERLAYS += device/htc/runnymede/overlay
 
 # Boot ramdisk setup
 PRODUCT_COPY_FILES += \
-    device/htc/ace/ramdisk/fstab.spade:root/fstab.spade \
-    device/htc/ace/ramdisk/init.spade.rc:root/init.spade.rc \
-    device/htc/ace/ramdisk/ueventd.spade.rc:root/ueventd.spade.rc
+    device/htc/runnymede/ramdisk/fstab.runnymede:root/fstab.runnymede \
+    device/htc/runnymede/ramdisk/init.runnymede.rc:root/init.runnymede.rc \
+    device/htc/runnymede/ramdisk/ueventd.runnymede.rc:root/ueventd.runnymede.rc
 	
 # Media Profiles
 PRODUCT_COPY_FILES += \
-    device/htc/ace/configs/media_profiles.xml:system/etc/media_profiles.xml
+    device/htc/runnymede/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 # GPS config
-PRODUCT_COPY_FILES += device/htc/ace/configs/gps.conf:system/etc/gps.conf
+PRODUCT_COPY_FILES += device/htc/runnymede/configs/gps.conf:system/etc/gps.conf
 
 # HTC BT audio config
-PRODUCT_COPY_FILES += device/htc/ace/configs/AudioBTID.csv:system/etc/AudioBTID.csv
+PRODUCT_COPY_FILES += device/htc/runnymede/configs/AudioBTID.csv:system/etc/AudioBTID.csv
 
 # vold config
-PRODUCT_COPY_FILES += device/htc/ace/configs/vold.fstab:system/etc/vold.fstab
+PRODUCT_COPY_FILES += device/htc/runnymede/configs/vold.fstab:system/etc/vold.fstab
+
+# Device specific firmware
+PRODUCT_COPY_FILES += \
+    device/htc/runnymede/firmware/BCM4330B1_002.001.003.0550.0568.hcd:system/etc/firmware/BCM4330B1_002.001.003.0550.0568.hcd \
+    device/htc/runnymede/firmware/default.acdb:system/etc/firmware/default.acdb \
+    device/htc/runnymede/firmware/default_org.acdb:system/etc/firmware/default_org.acdb
 
 # ACDB
-PRODUCT_COPY_FILES += \
-    device/htc/ace/configs/default.acdb:system/etc/firmware/default.acdb \
-    device/htc/ace/configs/default_org.acdb:system/etc/firmware/default_org.acdb
+#PRODUCT_COPY_FILES += \
+#    device/htc/runnymede/configs/default.acdb:system/etc/firmware/default.acdb \
+#    device/htc/runnymede/configs/default_org.acdb:system/etc/firmware/default_org.acdb
 
 # Audio DSP Profiles
 PRODUCT_COPY_FILES += \
-    device/htc/ace/dsp/AdieHWCodec.csv:system/etc/AdieHWCodec.csv \
-    device/htc/ace/dsp/AIC3254_REG.csv:system/etc/AIC3254_REG.csv \
-    device/htc/ace/dsp/AIC3254_REG_XD.csv:system/etc/AIC3254_REG_XD.csv \
-    device/htc/ace/dsp/CodecDSPID.txt:system/etc/CodecDSPID.txt \
-    device/htc/ace/dsp/HP_Audio.csv:system/etc/HP_Audio.csv \
-    device/htc/ace/dsp/HP_Video.csv:system/etc/HP_Video.csv \
-    device/htc/ace/dsp/SPK_Combination.csv:system/etc/SPK_Combination.csv \
-    device/htc/ace/dsp/soundimage/Sound_Bass_Booster.txt:system/etc/soundimage/Sound_Bass_Booster.txt \
-    device/htc/ace/dsp/soundimage/Sound_Blues.txt:system/etc/soundimage/Sound_Blues.txt \
-    device/htc/ace/dsp/soundimage/Sound_Classical.txt:system/etc/soundimage/Sound_Classical.txt \
-    device/htc/ace/dsp/soundimage/Sound_Country.txt:system/etc/soundimage/Sound_Country.txt \
-    device/htc/ace/dsp/soundimage/Sound_Dolby_A_HP.txt:system/etc/soundimage/Sound_Dolby_A_HP.txt \
-    device/htc/ace/dsp/soundimage/Sound_Dolby_A_SPK.txt:system/etc/soundimage/Sound_Dolby_A_SPK.txt \
-    device/htc/ace/dsp/soundimage/Sound_Dolby_V_HP.txt:system/etc/soundimage/Sound_Dolby_V_HP.txt \
-    device/htc/ace/dsp/soundimage/Sound_Dolby_V_SPK.txt:system/etc/soundimage/Sound_Dolby_V_SPK.txt \
-    device/htc/ace/dsp/soundimage/Sound_Dualmic.txt:system/etc/soundimage/Sound_Dualmic.txt \
-    device/htc/ace/dsp/soundimage/Sound_Dualmic_EP.txt:system/etc/soundimage/Sound_Dualmic_EP.txt \
-    device/htc/ace/dsp/soundimage/Sound_Dualmic_SPK.txt:system/etc/soundimage/Sound_Dualmic_SPK.txt \
-    device/htc/ace/dsp/soundimage/Sound_Jazz.txt:system/etc/soundimage/Sound_Jazz.txt \
-    device/htc/ace/dsp/soundimage/Sound_Latin.txt:system/etc/soundimage/Sound_Latin.txt \
-    device/htc/ace/dsp/soundimage/Sound_New_Age.txt:system/etc/soundimage/Sound_New_Age.txt \
-    device/htc/ace/dsp/soundimage/Sound_Original.txt:system/etc/soundimage/Sound_Original.txt \
-    device/htc/ace/dsp/soundimage/Sound_Original_SPK.txt:system/etc/soundimage/Sound_Original_SPK.txt \
-    device/htc/ace/dsp/soundimage/Sound_Piano.txt:system/etc/soundimage/Sound_Piano.txt \
-    device/htc/ace/dsp/soundimage/Sound_Pop.txt:system/etc/soundimage/Sound_Pop.txt \
-    device/htc/ace/dsp/soundimage/Sound_R_B.txt:system/etc/soundimage/Sound_R_B.txt \
-    device/htc/ace/dsp/soundimage/Sound_Rock.txt:system/etc/soundimage/Sound_Rock.txt \
-    device/htc/ace/dsp/soundimage/Sound_SRS_A_HP.txt:system/etc/soundimage/Sound_SRS_A_HP.txt \
-    device/htc/ace/dsp/soundimage/Sound_SRS_A_SPK.txt:system/etc/soundimage/Sound_SRS_A_SPK.txt \
-    device/htc/ace/dsp/soundimage/Sound_SRS_V_HP.txt:system/etc/soundimage/Sound_SRS_V_HP.txt \
-    device/htc/ace/dsp/soundimage/Sound_SRS_V_SPK.txt:system/etc/soundimage/Sound_SRS_V_SPK.txt \
-    device/htc/ace/dsp/soundimage/Sound_Treble_Booster.txt:system/etc/soundimage/Sound_Treble_Booster.txt \
-    device/htc/ace/dsp/soundimage/Sound_Vocal_Booster.txt:system/etc/soundimage/Sound_Vocal_Booster.txt
+    device/htc/runnymede/dsp/AdieHWCodec.csv:system/etc/AdieHWCodec.csv \
+    device/htc/runnymede/dsp/AIC3254_REG.csv:system/etc/AIC3254_REG.csv \
+    device/htc/runnymede/dsp/AIC3254_REG_XD.csv:system/etc/AIC3254_REG_XD.csv \
+    device/htc/runnymede/dsp/CodecDSPID.txt:system/etc/CodecDSPID.txt \
+    device/htc/runnymede/dsp/HP_Audio.csv:system/etc/HP_Audio.csv \
+    device/htc/runnymede/dsp/HP_Video.csv:system/etc/HP_Video.csv \
+    device/htc/runnymede/dsp/SPK_Combination.csv:system/etc/SPK_Combination.csv \
+    device/htc/runnymede/dsp/soundimage/Sound_Bass_Booster.txt:system/etc/soundimage/Sound_Bass_Booster.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Blues.txt:system/etc/soundimage/Sound_Blues.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Classical.txt:system/etc/soundimage/Sound_Classical.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Country.txt:system/etc/soundimage/Sound_Country.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Dolby_A_HP.txt:system/etc/soundimage/Sound_Dolby_A_HP.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Dolby_A_SPK.txt:system/etc/soundimage/Sound_Dolby_A_SPK.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Dolby_V_HP.txt:system/etc/soundimage/Sound_Dolby_V_HP.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Dolby_V_SPK.txt:system/etc/soundimage/Sound_Dolby_V_SPK.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Dualmic.txt:system/etc/soundimage/Sound_Dualmic.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Dualmic_EP.txt:system/etc/soundimage/Sound_Dualmic_EP.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Dualmic_SPK.txt:system/etc/soundimage/Sound_Dualmic_SPK.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Jazz.txt:system/etc/soundimage/Sound_Jazz.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Latin.txt:system/etc/soundimage/Sound_Latin.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_New_Age.txt:system/etc/soundimage/Sound_New_Age.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Original.txt:system/etc/soundimage/Sound_Original.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Original_SPK.txt:system/etc/soundimage/Sound_Original_SPK.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Piano.txt:system/etc/soundimage/Sound_Piano.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Pop.txt:system/etc/soundimage/Sound_Pop.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_R_B.txt:system/etc/soundimage/Sound_R_B.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Rock.txt:system/etc/soundimage/Sound_Rock.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_SRS_A_HP.txt:system/etc/soundimage/Sound_SRS_A_HP.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_SRS_A_SPK.txt:system/etc/soundimage/Sound_SRS_A_SPK.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_SRS_V_HP.txt:system/etc/soundimage/Sound_SRS_V_HP.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_SRS_V_SPK.txt:system/etc/soundimage/Sound_SRS_V_SPK.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Treble_Booster.txt:system/etc/soundimage/Sound_Treble_Booster.txt \
+    device/htc/runnymede/dsp/soundimage/Sound_Vocal_Booster.txt:system/etc/soundimage/Sound_Vocal_Booster.txt
 
 # Keylayouts and keychars
 PRODUCT_COPY_FILES += \
-    device/htc/ace/keylayout/keychars/atmel-touchscreen.kcm:system/usr/keychars/atmel-touchscreen.kcm \
-    device/htc/ace/keylayout/keychars/synaptics-rmi-touchscreen.kcm:system/usr/keychars/synaptics-rmi-touchscreen.kcm \
-    device/htc/ace/keylayout/keychars/elan-touchscreen.kcm:system/usr/keychars/elan-touchscreen.kcm \
-    device/htc/ace/keylayout/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
-    device/htc/ace/keylayout/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
-    device/htc/ace/keylayout/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl \
-    device/htc/ace/keylayout/keylayout/spade-keypad.kl:system/usr/keylayout/spade-keypad.kl \
-    device/htc/ace/keylayout/keylayout/atmel-touchscreen.kl:system/usr/keylayout/atmel-touchscreen.kl \
-    device/htc/ace/keylayout/keylayout/synaptics-rmi-touchscreen.kl:system/usr/keylayout/synaptics-rmi-touchscreen.kl \
-    device/htc/ace/keylayout/keylayout/elan-touchscreen.kl:system/usr/keylayout/elan-touchscreen.kl
+    device/htc/runnymede/keylayout/keychars/atmel-touchscreen.kcm:system/usr/keychars/atmel-touchscreen.kcm \
+    device/htc/runnymede/keylayout/keychars/Generic.kcm:system/usr/keychars/Generic.kcm \
+    device/htc/runnymede/keylayout/keychars/qwerty.kcm:system/usr/keychars/qwerty.kcm \
+    device/htc/runnymede/keylayout/keychars/qwerty2.kcm:system/usr/keychars/qwerty2.kcm \
+    device/htc/runnymede/keylayout/keychars/Virtual.kcm:system/usr/keychars/Virtual.kcm \
+    device/htc/runnymede/keylayout/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
+    device/htc/runnymede/keylayout/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
+    device/htc/runnymede/keylayout/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl \
+    device/htc/runnymede/keylayout/keylayout/runnymede-keypad.kl:system/usr/keylayout/runnymede-keypad.kl \
+    device/htc/runnymede/keylayout/keylayout/atmel-touchscreen.kl:system/usr/keylayout/atmel-touchscreen.kl \
+    device/htc/runnymede/keylayout/keylayout/synaptics-rmi-touchscreen.kl:system/usr/keylayout/synaptics-rmi-touchscreen.kl \
+    device/htc/runnymede/keylayout/keylayout/Generic.kl:system/usr/keylayout/Generic.kl
 	
 # Input device config
 PRODUCT_COPY_FILES += \
-    device/htc/ace/idc/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc \
-    device/htc/ace/idc/spade-keypad.idc:system/usr/idc/spade-keypad.idc \
-    device/htc/ace/idc/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
-    device/htc/ace/idc/elan-touchscreen.idc:system/usr/idc/elan-touchscreen.idc
+    device/htc/runnymede/idc/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc \
+    device/htc/runnymede/idc/projector_input.idc:system/usr/idc/projector_input.idc \
+    device/htc/runnymede/idc/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
+    device/htc/runnymede/idc/qwerty.idc:system/usr/idc/qwerty.idc \
+    device/htc/runnymede/idc/qwerty2.idc:system/usr/idc/qwerty2.idc
 
 # Kernel
 ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := device/htc/ace/prebuilt/kernel/kernel
+	LOCAL_KERNEL := device/htc/runnymede/prebuilt/kernel/kernel
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
 # Kernel modules
 PRODUCT_COPY_FILES += \
-    device/htc/ace/prebuilt/kernel/bcmdhd.ko:system/lib/modules/bcmdhd.ko \
-    device/htc/ace/prebuilt/kernel/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko
+    device/htc/runnymede/prebuilt/kernel/bcmdhd.ko:system/lib/modules/bcmdhd.ko \
+    device/htc/runnymede/prebuilt/kernel/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko
 endif
 
 # Copy bcm4329 firmware
-$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
+#$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
 
 # BCM4329 firmware
-PRODUCT_COPY_FILES += \
-    device/htc/ace/firmware/bcm4329.hcd:system/vendor/firmware/bcm4329.hcd
+#PRODUCT_COPY_FILES += \
+#    device/htc/runnymede/firmware/bcm4329.hcd:system/vendor/firmware/bcm4329.hcd
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -169,7 +178,7 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 # Fix bad lunch inheritance
-PRODUCT_NAME := cfx_ace
+PRODUCT_NAME := cfx_runnymede
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi
@@ -177,7 +186,7 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 PRODUCT_LOCALES += en_US
 
 # call the proprietary setup
-$(call inherit-product, vendor/htc/ace/ace-vendor.mk)
+$(call inherit-product, vendor/htc/runnymede/runnymede-vendor.mk)
 
 # call dalvik heap config
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)

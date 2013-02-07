@@ -1,4 +1,4 @@
-# Copyright (C) 2013 The Android Open Source Project
+# Copyright (C) 2010 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,38 +11,53 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 #
-# Changelog:
-# 2013-01-27 // Calibrated by Mustaavalkosta
-
-# Input device configuration file for a touch screen that supports pressure,
-# size and orientation.  The pressure and size scale factors were obtained
-# by measuring the characteristics of the device itself and deriving
-# useful approximations based on the resolution of the touch sensor and the
-# display.
+# Input Device Calibration File for the ace touch screen.
 #
-# Note that these parameters are specific to a particular device model.
-# Different parameters will need to be used for other devices.
+# These calibration values are derived from empirical measurements
+# and may not be appropriate for use with other touch screens.
+# Refer to the input device calibration documentation for more details.
+#
 
-# Basic Parameters
-touch.deviceType = touchScreen
-touch.orientationAware = 1
+# Touch Size
+touch.touchSize.calibration = pressure
 
-# Size
-# Based on empirical measurements, we estimate the size of the contact
-# using size = sqrt(area) * 38 + 0.
-touch.size.calibration = area
-touch.size.scale = 38
-touch.size.bias = 0
-touch.size.isSummed = 0
+# Tool Size
+# Driver reports tool size as a linear width measurement summed over
+# all contact points.
+#
+# Raw width field measures approx. 1 unit per millimeter
+# of tool size on the surface where a raw width of 1 corresponds
+# to about 17mm of physical size.  Given that the display resolution
+# is 10px per mm we obtain a scale factor of 10 pixels / unit and
+# a bias of 160 pixels.  In addition, the raw width represents a
+# sum of all contact area so we note this fact in the calibration.
+touch.toolSize.calibration = linear
+touch.toolSize.linearScale = 10
+touch.toolSize.linearBias = 160
+touch.toolSize.isSummed = 1
 
 # Pressure
 # Driver reports signal strength as pressure.
 #
-# A normal index finger touch typically registers about 80 signal strength
-# units although we don't expect these values to be accurate.
+# A normal thumb touch while touching the back of the device
+# typically registers about 100 signal strength units although
+# this value is highly variable and is sensitive to contact area,
+# manner of contact and environmental conditions.  We set the
+# scale so that a normal touch with good signal strength will be
+# reported as having a pressure somewhere in the vicinity of 1.0,
+# a featherlight touch will be below 1.0 and a heavy or large touch
+# will be above 1.0.  We don't expect these values to be accurate.
 touch.pressure.calibration = amplitude
-touch.pressure.scale = 0.0105
+touch.pressure.source = default
+touch.pressure.scale = 0.01
+
+# Size
+touch.size.calibration = normalized
 
 # Orientation
 touch.orientation.calibration = none
+
+# Type
+touch.deviceType = touchScreen
