@@ -1,6 +1,12 @@
 Device tree for the HTC Runnymede (aka Sensation XL)
 
-Copyright (C) 2013 Anders Nielsen (Anders3408) <anders3408@yahoo.dk>
+Copyright (C) 2013 RunnyCM 
+Team Members:
+Anders3408 | <anders3408@yahoo.dk>
+Zasuk | <andre_fms_@live.com.pt>
+Antdking | <anthonydking@gmail.com>
+Lexmazter | <lex_si_atat@yahoo.com>
+
 Parts Copyright (C) 2013 The CyanogenMod Project
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,3 +20,5 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+
