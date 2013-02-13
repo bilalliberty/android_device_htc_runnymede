@@ -34,6 +34,12 @@
 # Compiler Optimization
 ARCH_ARM_HIGH_OPTIMIZATION := true
 
+# Mommy, i want PIE! NO PIE!!!
+TARGET_DISABLE_ARM_PIE := true
+
+# This fixes the PMEM with new ramdisk
+BOARD_NEEDS_MEMORYHEAPPMEM := true
+
 # Kernel & Boot Loader
 TARGET_BOOTLOADER_BOARD_NAME := runnymede
 
@@ -83,6 +89,9 @@ BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 
 # SDCard loves this
 BOARD_VOLD_MAX_PARTITIONS := 34
+
+# For Legacy display repo
+TARGET_QCOM_DISPLAY_VARIANT := legacy
 
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
 TARGET_BOOTANIMATION_USE_RGB565 := true

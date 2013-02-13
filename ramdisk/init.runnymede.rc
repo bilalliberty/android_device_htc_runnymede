@@ -1,52 +1,74 @@
-on early-init
-    device mtd@misc 0460 radio diag
-    export EXTERNAL_STORAGE /mnt/sdcard
-    mkdir /mnt/sdcard 0000 system system
-    symlink /mnt/sdcard /sdcard
-    mkdir /mnt/emmc 0000 system system
-    mkdir /mnt/usb 0000 system system
+import init.htc7x30.usb.rc
 
-on emmc
-    mkdir /system
-    mkdir /data 0771 system system
-    mkdir /cache 0770 system cache
-    mkdir /devlog 0700 root root
-    devwait emmc@system
-    mount ext4 emmc@system /system ro barrier=1
-    devwait emmc@userdata
-#   exec /system/bin/e2fsck -p emmc@userdata
-    mount ext4 emmc@userdata /data nosuid nodev barrier=1 noauto_da_alloc
-    mount ext4 emmc@cache /cache nosuid nodev barrier=1
-    mount ext4 emmc@devlog /devlog nosuid nodev barrier=1
-    mount ext4 emmc@fat /mnt/emmc nosuid nodev barrier=1
+on early-init
+    mount debugfs /sys/kernel/debug /sys/kernel/debug
+    mkdir /storage 0555 root root
+    mkdir /storage/primary 0555 root root
+    mkdir /storage/primary/legacy 0555 root root
+    export EXTERNAL_STORAGE /storage/primary/legacy
+
+    # Support legacy paths
+    symlink /storage/primary/legacy /sdcard
+    symlink /storage/primary/legacy /mnt/sdcard
+    symlink /storage/primary/legacy /storage/sdcard0
+    symlink /mnt/shell/primary/0 /storage/primary/legacy
+
+    device mtd@misc 0460 radio diag
+
+on early-fs
+   mkdir /devlog 0700 root root
 
 on fs
    #mount all the things
-   mount_all fstab.runnymede
+   mount_all /fstab.runnymede
 
 on emmc-fs
    #mount all the things
-   mount_all fstab.runnymede
+   mount_all /fstab.runnymede
 
-on init
-    # double check the perms and set owner
-    # export BOOTCLASSPATH /system/framework/core.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/core-junit.jar:/system/framework/com.htc.commonctrl.jar:/system/framework/com.htc.framework.jar:/system/framework/com.scalado.util.ScaladoUtil.jar:/system/framework/com.orange.authentication.simcard.jar:/system/framework/kafdex.jar
-    chown root root /devlog
+on post-fs
+    chmod 0771 /cache
+    chown system cache /cache
     chmod 0700 /devlog
+    chown root root /devlog
 
-    # for Invense MPU3050
-    chmod 0664 /dev/mpu
-    chmod 0664 /dev/mpuirq
-    chmod 0664 /dev/timerirq
-    chown system system /dev/mpu
-    chown system system /dev/mpuirq
-    chown system system /dev/timerirq
+on post-fs-data
+    # Prep for services
+    chmod 0771 /data
+    chown system system /data
+    mkdir /data/radio 0770 radio radio
+    mkdir /data/misc 1771 system misc
+    mkdir /data/misc/bluetoothd 0770 bluetooth bluetooth
+    mkdir /data/misc/keystore 0700 keystore keystore
+    mkdir /data/misc/vpn 0770 system system
+    mkdir /data/misc/vpn/profiles 0770 system system
+    mkdir /data/misc/wifi 0770 wifi wifi
+    mkdir /data/misc/wifi/sockets 0770 wifi wifi
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    chown dhcp dhcp /data/misc/dhcp
+
+    # Allow system to have access to /dev/tun directory
+    mkdir /dev/tun 0770 system vpn
+    chown system vpn /dev/tun
+    chmod 0770 /dev/tun
+
+    # Set indication (checked by vold) that we have finished this action
+    setprop vold.post_fs_data_done 1
 
 on boot
 
 # + SSD_RIL: Otis: from Qualcomm QMI and Netmgrd
     mkdir /data/radio 0770 radio radio
 # - SSD_RIL: Otis: from Qualcomm QMI and Netmgrd
+
+    # Power Management
+    chmod 0664 /sys/module/pm/parameters/idle_sleep_mode
+
+    # CyanogenMod SysFS entries
+    chown radio system /sys/module/gpio_event/parameters/phone_call_status
+    chmod 0664         /sys/module/gpio_event/parameters/phone_call_status
+    chown radio system /sys/camera_led_status/led_ril_status
+    chmod 0644         /sys/camera_led_status/led_ril_status
 
     mkdir /data/misc/wifi 0770 wifi wifi
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
@@ -57,10 +79,6 @@ on boot
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chmod 0660                /sys/class/rfkill/rfkill0/state
-    
-    # Widevine DRM
-	chown drm system /dev/htcdrm
-	chmod 0660 /dev/htcdrm
     
     # for modem link
 	chown system system /sys/module/serial/parameters/modem_enabled
@@ -112,13 +130,13 @@ on boot
     copy /etc/DxPrdyProvisionObf.pkg /data/DxDrm/Credentials/PlayReady/DxPrdyProvisionObf.pkg
     copy /etc/DxDrmConfig_Server.txt /data/DxDrm/DxDrmConfig_Server.txt
 
-    # Load modules
-    insmod /lib/modules/bcmdhd.ko
-
-# compass/accelerometer daemon
-#service akmd /system/bin/akmd
-#   user compass
-#    group compass misc input
+    # Load modules on startup
+    insmod /system/lib/modules/bcmdhd.ko
+    insmod /system/lib/modules/cpaccess.ko
+    insmod /system/lib/modules/dma_test.ko
+    insmod /system/lib/modules/kineto_gan.ko
+    insmod /system/lib/modules/reset_modem.ko
+    insmod /system/lib/modules/scsi_wait_scan.ko
 
 # bugreport is triggered by the KEY_VOLUMEUP and KEY_VOLUMEDOWN keycodes
 service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
@@ -213,12 +231,7 @@ on property:ro.emmc=1
 
 on property:init.svc.bootanim=stopped
     start qcom-post-boot
-    # Overwrite ActivityManager's low memory killer settings
-    write /sys/module/lowmemorykiller/parameters/adj 0,2,4,7,9,12
-    write /sys/module/lowmemorykiller/parameters/minfile 6348,8089,9830,11878,13619,16793
-    write /sys/module/lowmemorykiller/parameters/check_filepages 1
-    # Protect more low memory pages
-    write /proc/sys/vm/lowmem_reserve_ratio 16 16
+
 # for modem link
 service modem /system/xbin/wireless_modem
     user system
@@ -271,7 +284,3 @@ service qb_offmode_alarm /system/bin/qb_offmode_alarm
     user root
     disabled
     oneshot
-
-# added for VoIP on 20100629
-#export BOOTCLASSPATH=$BOOTCLASSPATH:/system/framework/com.htc.viplib.jar
-

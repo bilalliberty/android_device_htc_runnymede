@@ -30,9 +30,9 @@ DEVICE_PACKAGE_OVERLAYS += device/htc/runnymede/overlay
 
 # Boot ramdisk setup
 PRODUCT_COPY_FILES += \
-    device/htc/runnymede/ramdisk/fstab.runnymede:root/fstab.runnymede \
     device/htc/runnymede/ramdisk/init.runnymede.rc:root/init.runnymede.rc \
-    device/htc/runnymede/ramdisk/ueventd.runnymede.rc:root/ueventd.runnymede.rc
+    device/htc/runnymede/ramdisk/ueventd.runnymede.rc:root/ueventd.runnymede.rc \
+    device/htc/runnymede/ramdisk/fstab.runnymede:root/fstab.runnymede
 	
 # Media Profiles
 PRODUCT_COPY_FILES += \
@@ -126,8 +126,7 @@ PRODUCT_COPY_FILES += \
 
 # Kernel modules
 PRODUCT_COPY_FILES += \
-    device/htc/runnymede/prebuilt/kernel/bcmdhd.ko:system/lib/modules/bcmdhd.ko \
-    device/htc/runnymede/prebuilt/kernel/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko
+    device/htc/runnymede/prebuilt/kernel/bcmdhd.ko:system/lib/modules/bcmdhd.ko
 endif
 
 # Copy bcm4329 firmware
@@ -152,9 +151,9 @@ PRODUCT_PACKAGES += \
 # GPS / BT / Lights / Sensors
 PRODUCT_PACKAGES += \
     libbt-vendor \
-    gps.spade \
-    lights.spade \
-    sensors.spade
+    gps.runnymede \
+    lights.msm7x30 \
+    sensors.runnymede
 
 # Permissions
 PRODUCT_COPY_FILES += \
