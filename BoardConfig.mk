@@ -34,12 +34,6 @@
 # Compiler Optimization
 ARCH_ARM_HIGH_OPTIMIZATION := true
 
-# Mommy, i want PIE! NO PIE!!!
-TARGET_DISABLE_ARM_PIE := true
-
-# This fixes the PMEM with new ramdisk
-BOARD_NEEDS_MEMORYHEAPPMEM := true
-
 # Kernel & Boot Loader
 TARGET_BOOTLOADER_BOARD_NAME := runnymede
 
