@@ -41,6 +41,10 @@ PRODUCT_COPY_FILES += \
 # GPS config
 PRODUCT_COPY_FILES += device/htc/runnymede/configs/gps.conf:system/etc/gps.conf
 
+# BT vendor configuration
+PRODUCT_COPY_FILES += \
+    device/htc/runnymede/configs/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
+
 # HTC BT audio config
 PRODUCT_COPY_FILES += device/htc/runnymede/configs/AudioBTID.csv:system/etc/AudioBTID.csv
 
