@@ -84,9 +84,6 @@ BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 # SDCard loves this
 BOARD_VOLD_MAX_PARTITIONS := 34
 
-# For Legacy display repo
-TARGET_QCOM_DISPLAY_VARIANT := legacy
-
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
 TARGET_BOOTANIMATION_USE_RGB565 := true
 
