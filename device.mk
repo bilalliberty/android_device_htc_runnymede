@@ -131,7 +131,7 @@ PRODUCT_COPY_FILES += \
     device/htc/runnymede/prebuilt/kernel/dma_test.ko:system/lib/modules/dma_test.ko \
     device/htc/runnymede/prebuilt/kernel/kineto_gan.ko:system/lib/modules/kineto_gan.ko \
     device/htc/runnymede/prebuilt/kernel/reset_modem.ko:system/lib/modules/reset_modem.ko \
-    device/htc/runnymede/prebuilt/kernel/sci_wait_scan.ko:system/lib/modules/sci_wait_scan.ko
+    device/htc/runnymede/prebuilt/kernel/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko
 endif
 
 # Copy bcm4329 firmware
