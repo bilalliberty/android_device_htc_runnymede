@@ -12,5 +12,5 @@
 ## optional_flags - Determine whether the volume is encryptable or nonremovable
 ######################
 
-dev_mount sdcard /mnt/sdcard 34 /devices/platform/msm_sdcc.2/mmc_host
+dev_mount sdcard /storage/primary/legacy 34 /devices/platform/msm_sdcc.2/mmc_host
 #end line ## keep this line
