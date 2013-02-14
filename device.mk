@@ -157,8 +157,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libbt-vendor \
     gps.runnymede \
-    lights.msm7x30 \
-    sensors.runnymede
+    lights.msm7x30
 
 # Permissions
 PRODUCT_COPY_FILES += \
