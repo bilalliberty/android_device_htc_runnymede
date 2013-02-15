@@ -160,7 +160,6 @@ PRODUCT_PACKAGES += \
 # GPS / BT / Lights / Sensors
 PRODUCT_PACKAGES += \
     libbt-vendor \
-    gps.runnymede \
     lights.msm7x30
 
 # Permissions
