@@ -51,17 +51,6 @@ PRODUCT_COPY_FILES += device/htc/runnymede/configs/AudioBTID.csv:system/etc/Audi
 # vold config
 PRODUCT_COPY_FILES += device/htc/runnymede/configs/vold.fstab:system/etc/vold.fstab
 
-# Device specific firmware
-PRODUCT_COPY_FILES += \
-    device/htc/runnymede/firmware/BCM4330B1_002.001.003.0550.0568.hcd:system/etc/firmware/BCM4330B1_002.001.003.0550.0568.hcd \
-    device/htc/runnymede/firmware/default.acdb:system/etc/firmware/default.acdb \
-    device/htc/runnymede/firmware/default_org.acdb:system/etc/firmware/default_org.acdb
-
-# ACDB
-#PRODUCT_COPY_FILES += \
-#    device/htc/runnymede/configs/default.acdb:system/etc/firmware/default.acdb \
-#    device/htc/runnymede/configs/default_org.acdb:system/etc/firmware/default_org.acdb
-
 # Audio DSP Profiles
 PRODUCT_COPY_FILES += \
     device/htc/runnymede/dsp/AdieHWCodec.csv:system/etc/AdieHWCodec.csv \
