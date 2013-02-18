@@ -121,6 +121,11 @@ PRODUCT_COPY_FILES += \
     device/htc/runnymede/idc/qwerty.idc:system/usr/idc/qwerty.idc \
     device/htc/runnymede/idc/qwerty2.idc:system/usr/idc/qwerty2.idc
 
+# Test apps
+PRODUCT_PACKAGES += \
+    device/htc/runnymede/test/eartest.apk:system/app/eartest.apk \
+    device/htc/runnymede/test/test.apk:system/app/test.apk
+
 # Kernel
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 	LOCAL_KERNEL := device/htc/runnymede/prebuilt/kernel/kernel
