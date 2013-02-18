@@ -7,9 +7,9 @@ w 30 01 00	# enable weak connection<AVDD weak connect to DVDD>
 w 30 02 21	# ALDO pwr up and output 1.77V, DLDO output 1.72V, no over current detect in ALDO and DLDO
 w 30 7B 01	# set reference power-up time: 40ms when analog block pwr up
 w 30 00 00	# setting for I2S and clock settings
-w 30 06 04  # J=4.
+w 30 06 20  # J=4.
 w 30 05 12  #  pll pwr down, P=1, R=2.
-w 30 04 03  # PLL_CLKIN = MCLK; CODEC_CLKIN = PLL_CLK.
+w 30 04 07  # PLL_CLKIN = MCLK; CODEC_CLKIN = PLL_CLK.
 w 30 07 00  #  D LSB = 0.00
 w 30 08 00  #  D MSB = 0.00
 w 30 05 92  # PLL power up p=1,R=2
