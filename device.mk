@@ -162,10 +162,11 @@ PRODUCT_PACKAGES += \
    FileManager \
    Torch
    
-# GPS / BT / Lights / Sensors
+# GPS / BT / Lights / Sensors / Camera
 PRODUCT_PACKAGES += \
     libbt-vendor \
-    lights.msm7x30
+    lights.msm7x30 \
+    camera.msm7x30
 
 # Permissions
 PRODUCT_COPY_FILES += \
