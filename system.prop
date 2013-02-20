@@ -115,3 +115,10 @@ ro.htc.htcmode.data.path = /dev/ttyHSUSB3
 
 # USB Mounting
 persist.sys.usb.config=mass_storage,adb
+
+# Other things
+persist.sys.strictmode.visual=0
+persist.sys.strictmode.disable=1
+ro.secure=0
+ro.allow.mock.location=0
+ro.debuggable=1

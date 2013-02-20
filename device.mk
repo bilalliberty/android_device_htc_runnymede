@@ -143,13 +143,6 @@ PRODUCT_COPY_FILES += \
     device/htc/runnymede/prebuilt/kernel/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko
 endif
 
-# Copy bcm4329 firmware
-#$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
-
-# BCM4329 firmware
-#PRODUCT_COPY_FILES += \
-#    device/htc/runnymede/firmware/bcm4329.hcd:system/vendor/firmware/bcm4329.hcd
-
 # Filesystem management tools
 PRODUCT_PACKAGES += \
    make_ext4fs \
@@ -159,6 +152,7 @@ PRODUCT_PACKAGES += \
 
 # Build extra non-CM packages
 PRODUCT_PACKAGES += \
+   Camera \
    FileManager \
    Torch
    

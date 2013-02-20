@@ -48,6 +48,9 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 # Sensors for 4.2.2
 BOARD_USES_GENERIC_INVENSENSE := false
 
+# Front face camera
+BOARD_HAVE_HTC_FFC := true
+
 # Wifi related defines
 WIFI_BAND                        := 802_11_ABG
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
