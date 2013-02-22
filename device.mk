@@ -19,6 +19,8 @@ $(call inherit-product, device/htc/msm7x30-common/msm7x30.mk)
 # stuff common to all HTC phones
 #$(call inherit-product, device/htc/common/common.mk)
 
+
+
 # HTC Audio
 $(call inherit-product, device/htc/runnymede/media_a1026.mk)
 $(call inherit-product, device/htc/runnymede/media_htcaudio.mk)
@@ -98,6 +100,18 @@ PRODUCT_COPY_FILES += \
     device/htc/runnymede/dsp/soundimage/srs_geq10.cfg:system/etc/soundimage/srs_geq10.cfg 
 
 
+$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
+
+# BCM4330 firmware
+PRODUCT_COPY_FILES += \
+    device/htc/runnymede/firmware/bcm4330.hcd:system/vendor/firmware/bcm4330.hcd \
+    device/htc/runnymede/firmware/fw_bcm4330_apsta_b1.bin:system/vendor/firmware/fw_bcm4330_apsta_b1.bin \
+    device/htc/runnymede/firmware/fw_bcm4330_apsta_b2.bin:system/vendor/firmware/fw_bcm4330_apsta_b2.bin \
+    device/htc/runnymede/firmware/fw_bcm4330_b2.bin:system/vendor/firmware/fw_bcm4330_b2.bin \
+    device/htc/runnymede/firmware/fw_bcm4330_b1.bin:system/vendor/firmware/fw_bcm4330_b1.bin \
+    device/htc/runnymede/firmware/fw_bcm4330_p2p_b2.bin:system/vendor/firmware/fw_bcm4330_p2p_b2.bin \
+    device/htc/runnymede/firmware/fw_bcm4330_p2p_b1.bin:system/vendor/firmware/fw_bcm4330_p2p_b1.bin
+
 # Keylayouts and keychars
 PRODUCT_COPY_FILES += \
     device/htc/runnymede/keylayout/keychars/atmel-touchscreen.kcm:system/usr/keychars/atmel-touchscreen.kcm \
@@ -120,11 +134,6 @@ PRODUCT_COPY_FILES += \
     device/htc/runnymede/idc/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
     device/htc/runnymede/idc/qwerty.idc:system/usr/idc/qwerty.idc \
     device/htc/runnymede/idc/qwerty2.idc:system/usr/idc/qwerty2.idc
-
-# Test apps
-PRODUCT_PACKAGES += \
-    device/htc/runnymede/test/eartest.apk:system/app/eartest.apk \
-    device/htc/runnymede/test/test.apk:system/app/test.apk
 
 # Kernel
 ifeq ($(TARGET_PREBUILT_KERNEL),)
@@ -149,18 +158,11 @@ PRODUCT_PACKAGES += \
    FileManager \
    e2fsck \
    setup_fs
-
-# Build extra non-CM packages
-PRODUCT_PACKAGES += \
-   Camera \
-   FileManager \
-   Torch
    
 # GPS / BT / Lights / Sensors / Camera
 PRODUCT_PACKAGES += \
     libbt-vendor \
     lights.msm7x30 \
-    camera.msm7x30
 
 # Permissions
 PRODUCT_COPY_FILES += \

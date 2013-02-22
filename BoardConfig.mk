@@ -23,7 +23,7 @@
 # WARNING: This line must come *before* including the proprietary
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
-
+USE_CAMERA_STUB := true
 
 # inherit from common msm7x30
 -include device/htc/msm7x30-common/BoardConfigCommon.mk
@@ -36,8 +36,6 @@ ARCH_ARM_HIGH_OPTIMIZATION := true
 
 # Kernel & Boot Loader
 TARGET_BOOTLOADER_BOARD_NAME := runnymede
-
-BOARD_KERNEL_CMDLINE :=
 BOARD_KERNEL_BASE := 0x14400000
 BOARD_KERNEL_PAGE_SIZE := 4096
 
@@ -50,19 +48,6 @@ BOARD_USES_GENERIC_INVENSENSE := false
 
 # Front face camera
 BOARD_HAVE_HTC_FFC := true
-
-# Wifi related defines
-WIFI_BAND                        := 802_11_ABG
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
-BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
-BOARD_HOSTAPD_DRIVER             := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
-BOARD_WLAN_DEVICE                := bcmdhd
-WIFI_DRIVER_FW_PATH_STA          := "/system/etc/firmware/fw_bcmdhd.bin"
-WIFI_DRIVER_FW_PATH_AP           := "/system/etc/firmware/fw_bcmdhd_apsta.bin"
-WIFI_DRIVER_FW_PATH_P2P          := "/system/etc/firmware/fw_bcmdhd_p2p.bin"
-WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
 
 # cat /proc/emmc
 #dev:        size     erasesize name
@@ -84,12 +69,7 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 4328521216
 BOARD_BOOTIMAGE_PARTITION_SIZE := 4194304
 BOARD_FLASH_BLOCK_SIZE := 4096
 
-TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
-
-#TARGET_KERNEL_SOURCE := kernel/htc/runnymede
-#TARGET_KERNEL_CONFIG := runnymede_defconfig
 TARGET_PREBUILT_KERNEL := device/htc/runnymede/prebuilt/kernel/kernel
-#TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
 
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_HAS_NO_SELECT_BUTTON := true
@@ -106,4 +86,5 @@ BOARD_VOLD_MAX_PARTITIONS := 34
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
 TARGET_BOOTANIMATION_USE_RGB565 := true
 
+# Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/runnymede/bluetooth
