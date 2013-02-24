@@ -12,14 +12,11 @@
 #
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+# stuff common to all HTC phones
+$(call inherit-product-if-exists, device/htc/common/common.mk)
 
 # Inherit common msm7x30 configs
 $(call inherit-product, device/htc/msm7x30-common/msm7x30.mk)
-
-# stuff common to all HTC phones
-#$(call inherit-product, device/htc/common/common.mk)
-
-
 
 # HTC Audio
 $(call inherit-product, device/htc/runnymede/media_a1026.mk)
@@ -161,12 +158,14 @@ PRODUCT_PACKAGES += \
    
 # GPS / BT / Lights / Sensors / Camera
 PRODUCT_PACKAGES += \
+    libcamera \
     libbt-vendor \
-    lights.msm7x30 \
+    lights.msm7x30
 
 # Permissions
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml
 
 # Extra properties
 PRODUCT_PROPERTY_OVERRIDES += \

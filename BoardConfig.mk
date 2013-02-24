@@ -23,7 +23,7 @@
 # WARNING: This line must come *before* including the proprietary
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
-USE_CAMERA_STUB := true
+
 
 # inherit from common msm7x30
 -include device/htc/msm7x30-common/BoardConfigCommon.mk
@@ -48,6 +48,20 @@ BOARD_USES_GENERIC_INVENSENSE := false
 
 # Front face camera
 BOARD_HAVE_HTC_FFC := true
+BOARD_USES_HTC_CAMERA := true
+
+# Wifi related defines
+WIFI_BAND                        := 802_11_ABG
+WPA_SUPPLICANT_VERSION           := VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
+BOARD_HOSTAPD_DRIVER             := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
+BOARD_WLAN_DEVICE                := bcmdhd
+WIFI_DRIVER_FW_PATH_STA          := "/system/vendor/firmware/fw_bcmdhd.bin"
+WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/fw_bcmdhd_apsta.bin"
+WIFI_DRIVER_FW_PATH_P2P          := "/system/vendor/firmware/fw_bcmdhd_p2p.bin"
+WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
 
 # cat /proc/emmc
 #dev:        size     erasesize name
@@ -59,6 +73,7 @@ BOARD_HAVE_HTC_FFC := true
 #mmcblk0p29: 101fffe00 00000200 "userdata"
 #mmcblk0p32: 01fbfc00 00000200 "devlog"
 #mmcblk0p33: 00040e00 00000200 "pdata"
+#mmcblk0p34: 00040e00 00000200 "pdata"
 #mmcblk0p31: 00008000 00000200 "extra"
 #mmcblk0p26: 00300000 00000200 "modem_st1"
 #mmcblk0p27: 00300000 00000200 "modem_st2"
@@ -69,6 +84,8 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 4328521216
 BOARD_BOOTIMAGE_PARTITION_SIZE := 4194304
 BOARD_FLASH_BLOCK_SIZE := 4096
 
+TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
+TARGET_PROVIDES_LIBLIGHTS := true
 TARGET_PREBUILT_KERNEL := device/htc/runnymede/prebuilt/kernel/kernel
 
 BOARD_HAS_LARGE_FILESYSTEM := true
@@ -78,9 +95,11 @@ BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk0p33
 BOARD_USES_MMCUTILS := false
 BOARD_HAS_NO_MISC_PARTITION := false
 
+BOARD_USES_QCOM_AUDIO_VOIPMUTE := false
+BOARD_USES_QCOM_AUDIO_RESETALL := false
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 
-# SDCard loves this
+# For Sdcard
 BOARD_VOLD_MAX_PARTITIONS := 34
 
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
