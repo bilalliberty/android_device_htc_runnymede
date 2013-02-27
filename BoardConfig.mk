@@ -23,7 +23,7 @@
 # WARNING: This line must come *before* including the proprietary
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
-
+USE_CAMERA_STUB := true
 
 # inherit from common msm7x30
 -include device/htc/msm7x30-common/BoardConfigCommon.mk
@@ -46,9 +46,11 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 # Sensors for 4.2.2
 BOARD_USES_GENERIC_INVENSENSE := false
 
-# Front face camera
+# Camera front and back
 BOARD_HAVE_HTC_FFC := true
+BOARD_USE_REVERSE_FFC := true
 BOARD_USES_HTC_CAMERA := true
+BOARD_USES_LEGACY_OVERLAY := true
 
 # Wifi related defines
 WIFI_BAND                        := 802_11_ABG
@@ -58,9 +60,9 @@ BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
 BOARD_WLAN_DEVICE                := bcmdhd
-WIFI_DRIVER_FW_PATH_STA          := "/system/vendor/firmware/fw_bcmdhd.bin"
-WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/fw_bcmdhd_apsta.bin"
-WIFI_DRIVER_FW_PATH_P2P          := "/system/vendor/firmware/fw_bcmdhd_p2p.bin"
+WIFI_DRIVER_FW_PATH_STA          := "/system/etc/firmware/fw_bcmdhd.bin"
+WIFI_DRIVER_FW_PATH_AP           := "/system/etc/firmware/fw_bcmdhd_apsta.bin"
+WIFI_DRIVER_FW_PATH_P2P          := "/system/etc/firmware/fw_bcmdhd_p2p.bin"
 WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
 
 # cat /proc/emmc
@@ -86,7 +88,11 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
 TARGET_PROVIDES_LIBLIGHTS := true
+
+#TARGET_KERNEL_SOURCE := kernel/htc/latex-runnymede-ics-3.0.16
+#TARGET_KERNEL_CONFIG := LTX-JB-v0.6.defconfig
 TARGET_PREBUILT_KERNEL := device/htc/runnymede/prebuilt/kernel/kernel
+
 
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_HAS_NO_SELECT_BUTTON := true
@@ -107,3 +113,6 @@ TARGET_BOOTANIMATION_USE_RGB565 := true
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/runnymede/bluetooth
+
+# Experimental
+BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true

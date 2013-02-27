@@ -97,17 +97,7 @@ PRODUCT_COPY_FILES += \
     device/htc/runnymede/dsp/soundimage/srs_geq10.cfg:system/etc/soundimage/srs_geq10.cfg 
 
 
-$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
-
-# BCM4330 firmware
-PRODUCT_COPY_FILES += \
-    device/htc/runnymede/firmware/bcm4330.hcd:system/vendor/firmware/bcm4330.hcd \
-    device/htc/runnymede/firmware/fw_bcm4330_apsta_b1.bin:system/vendor/firmware/fw_bcm4330_apsta_b1.bin \
-    device/htc/runnymede/firmware/fw_bcm4330_apsta_b2.bin:system/vendor/firmware/fw_bcm4330_apsta_b2.bin \
-    device/htc/runnymede/firmware/fw_bcm4330_b2.bin:system/vendor/firmware/fw_bcm4330_b2.bin \
-    device/htc/runnymede/firmware/fw_bcm4330_b1.bin:system/vendor/firmware/fw_bcm4330_b1.bin \
-    device/htc/runnymede/firmware/fw_bcm4330_p2p_b2.bin:system/vendor/firmware/fw_bcm4330_p2p_b2.bin \
-    device/htc/runnymede/firmware/fw_bcm4330_p2p_b1.bin:system/vendor/firmware/fw_bcm4330_p2p_b1.bin
+#$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
 
 # Keylayouts and keychars
 PRODUCT_COPY_FILES += \
@@ -148,6 +138,16 @@ PRODUCT_COPY_FILES += \
     device/htc/runnymede/prebuilt/kernel/reset_modem.ko:system/lib/modules/reset_modem.ko \
     device/htc/runnymede/prebuilt/kernel/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko
 endif
+
+# Wifi/BT firmware
+PRODUCT_COPY_FILES += \
+    device/htc/runnymede/firmware/BCM4330B1_002.001.003.0550.0568.hcd:system/etc/firmware/BCM4330B1_002.001.003.0550.0568.hcd \
+    device/htc/runnymede/firmware/fw_bcm4330_apsta_b1.bin:system/etc/firmware/fw_bcm4330_apsta_b1.bin \
+    device/htc/runnymede/firmware/fw_bcm4330_apsta_b2.bin:system/etc/firmware/fw_bcm4330_apsta_b2.bin \
+    device/htc/runnymede/firmware/fw_bcm4330_b2.bin:system/etc/firmware/fw_bcm4330_b2.bin \
+    device/htc/runnymede/firmware/fw_bcm4330_b1.bin:system/etc/firmware/fw_bcm4330_b1.bin \
+    device/htc/runnymede/firmware/fw_bcm4330_p2p_b2.bin:system/etc/firmware/fw_bcm4330_p2p_b2.bin \
+    device/htc/runnymede/firmware/fw_bcm4330_p2p_b1.bin:system/etc/firmware/fw_bcm4330_p2p_b1.bin
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \

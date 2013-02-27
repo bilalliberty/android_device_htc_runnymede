@@ -64,6 +64,7 @@
 /dev/mpu                  0664   system     system
 /dev/mpuirq               0664   system     system
 /dev/timerirq             0664   system     system
+/dev/msm_dsps             0660  system       system
 
 # Radio
 /dev/smd7                 0640   radio      radio
@@ -116,8 +117,6 @@
 
 /sys/devices/virtual/smdpkt/smdcntl*       open_timeout   0664 radio radio
 
-#permissions for sensors
-/dev/msm_dsps             0660  system       system
 
 # for modem link
 /sys/module/serial/parameters/modem_enabled    0600    system  system
