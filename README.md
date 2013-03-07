@@ -1,5 +1,5 @@
 Device tree for the HTC Runnymede (aka Sensation XL)
-
+=========================
 Copyright (C) 2013 RunnyCM 
 Team Members:
 
