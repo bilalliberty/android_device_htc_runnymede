@@ -23,7 +23,6 @@
 # WARNING: This line must come *before* including the proprietary
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
-USE_CAMERA_STUB := true
 
 # inherit from common msm7x30
 -include device/htc/msm7x30-common/BoardConfigCommon.mk
@@ -36,6 +35,7 @@ ARCH_ARM_HIGH_OPTIMIZATION := true
 
 # Kernel & Boot Loader
 TARGET_BOOTLOADER_BOARD_NAME := runnymede
+BOARD_KERNEL_CMDLINE := no_console_suspend=1
 BOARD_KERNEL_BASE := 0x14400000
 BOARD_KERNEL_PAGE_SIZE := 4096
 
@@ -47,10 +47,16 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 BOARD_USES_GENERIC_INVENSENSE := false
 
 # Camera front and back
-BOARD_HAVE_HTC_FFC := true
-BOARD_USE_REVERSE_FFC := true
 BOARD_USES_HTC_CAMERA := true
 BOARD_USES_LEGACY_OVERLAY := true
+USE_CAMERA_STUB := true
+BOARD_USES_LEGACY_RIL := true
+BOARD_HAVE_HTC_FFC := true
+BOARD_USE_REVERSE_FFC := true
+
+# Audio
+#BOARD_USES_SRS_TRUEMEDIA := true
+BOARD_HAVE_FM_RADIO := true
 
 # Wifi related defines
 WIFI_BAND                        := 802_11_ABG
@@ -89,10 +95,15 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
 TARGET_PROVIDES_LIBLIGHTS := true
 
-#TARGET_KERNEL_SOURCE := kernel/htc/latex-runnymede-ics-3.0.16
-#TARGET_KERNEL_CONFIG := LTX-JB-v0.6.defconfig
-TARGET_PREBUILT_KERNEL := device/htc/runnymede/prebuilt/kernel/kernel
+COMPILE_KERNEL := false
 
+ifeq ($(COMPILE_KERNEL),true)
+TARGET_KERNEL_SOURCE := kernel/htc/msm7x30
+TARGET_KERNEL_CONFIG := LTX-JB-v0.6_defconfig
+TARGET_TOOLCHAIN_PREFIX := prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin/arm-eabi-
+else
+TARGET_PREBUILT_KERNEL := device/htc/runnymede/prebuilt/kernel/kernel
+endif
 
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_HAS_NO_SELECT_BUTTON := true
@@ -115,4 +126,4 @@ TARGET_BOOTANIMATION_USE_RGB565 := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/runnymede/bluetooth
 
 # Experimental
-BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
+#BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true

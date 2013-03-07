@@ -122,6 +122,16 @@ PRODUCT_COPY_FILES += \
     device/htc/runnymede/idc/qwerty.idc:system/usr/idc/qwerty.idc \
     device/htc/runnymede/idc/qwerty2.idc:system/usr/idc/qwerty2.idc
 
+# Wifi/BT firmware
+PRODUCT_COPY_FILES += \
+    device/htc/runnymede/firmware/BCM4330B1_002.001.003.0550.0568.hcd:system/etc/firmware/BCM4330B1_002.001.003.0550.0568.hcd \
+    device/htc/runnymede/firmware/fw_bcm4330_apsta_b1.bin:system/etc/firmware/fw_bcm4330_apsta_b1.bin \
+    device/htc/runnymede/firmware/fw_bcm4330_apsta_b2.bin:system/etc/firmware/fw_bcm4330_apsta_b2.bin \
+    device/htc/runnymede/firmware/fw_bcm4330_b2.bin:system/etc/firmware/fw_bcm4330_b2.bin \
+    device/htc/runnymede/firmware/fw_bcm4330_b1.bin:system/etc/firmware/fw_bcm4330_b1.bin \
+    device/htc/runnymede/firmware/fw_bcm4330_p2p_b2.bin:system/etc/firmware/fw_bcm4330_p2p_b2.bin \
+    device/htc/runnymede/firmware/fw_bcm4330_p2p_b1.bin:system/etc/firmware/fw_bcm4330_p2p_b1.bin
+
 # Kernel
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 	LOCAL_KERNEL := device/htc/runnymede/prebuilt/kernel/kernel
@@ -139,28 +149,27 @@ PRODUCT_COPY_FILES += \
     device/htc/runnymede/prebuilt/kernel/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko
 endif
 
-# Wifi/BT firmware
-PRODUCT_COPY_FILES += \
-    device/htc/runnymede/firmware/BCM4330B1_002.001.003.0550.0568.hcd:system/etc/firmware/BCM4330B1_002.001.003.0550.0568.hcd \
-    device/htc/runnymede/firmware/fw_bcm4330_apsta_b1.bin:system/etc/firmware/fw_bcm4330_apsta_b1.bin \
-    device/htc/runnymede/firmware/fw_bcm4330_apsta_b2.bin:system/etc/firmware/fw_bcm4330_apsta_b2.bin \
-    device/htc/runnymede/firmware/fw_bcm4330_b2.bin:system/etc/firmware/fw_bcm4330_b2.bin \
-    device/htc/runnymede/firmware/fw_bcm4330_b1.bin:system/etc/firmware/fw_bcm4330_b1.bin \
-    device/htc/runnymede/firmware/fw_bcm4330_p2p_b2.bin:system/etc/firmware/fw_bcm4330_p2p_b2.bin \
-    device/htc/runnymede/firmware/fw_bcm4330_p2p_b1.bin:system/etc/firmware/fw_bcm4330_p2p_b1.bin
-
 # Filesystem management tools
 PRODUCT_PACKAGES += \
    make_ext4fs \
    FileManager \
    e2fsck \
    setup_fs
-   
-# GPS / BT / Lights / Sensors / Camera
+
+# Build extra non-CM packages
 PRODUCT_PACKAGES += \
-    libcamera \
+   FileManager \
+   Torch \
+   FM \
+   MusicFX
+   
+# GPS / BT / Lights / Sensors
+PRODUCT_PACKAGES += \
     libbt-vendor \
-    lights.msm7x30
+    lights.msm7x30 \
+
+# Camera
+#$(call inherit-product-if-exists, device/htc/runnymede/msm7x30_camera_hal/Android.mk)
 
 # Permissions
 PRODUCT_COPY_FILES += \
