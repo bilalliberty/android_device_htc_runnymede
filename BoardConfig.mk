@@ -43,19 +43,12 @@ BOARD_KERNEL_PAGE_SIZE := 4096
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := runnymede
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 
-# Sensors for 4.2.2
-BOARD_USES_GENERIC_INVENSENSE := false
-
 # Camera front and back
-BOARD_USES_HTC_CAMERA := true
-BOARD_USES_LEGACY_OVERLAY := true
-USE_CAMERA_STUB := true
-BOARD_USES_LEGACY_RIL := true
 BOARD_HAVE_HTC_FFC := true
 BOARD_USE_REVERSE_FFC := true
+BOARD_USES_LEGACY_OVERLAY := true
 
 # Audio
-#BOARD_USES_SRS_TRUEMEDIA := true
 BOARD_HAVE_FM_RADIO := true
 
 # Wifi related defines
@@ -95,11 +88,11 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
 TARGET_PROVIDES_LIBLIGHTS := true
 
-COMPILE_KERNEL := false
+COMPILE_KERNEL := true
 
 ifeq ($(COMPILE_KERNEL),true)
-TARGET_KERNEL_SOURCE := kernel/htc/msm7x30
-TARGET_KERNEL_CONFIG := LTX-JB-v0.6_defconfig
+TARGET_KERNEL_SOURCE := kernel/htc/runnymede
+TARGET_KERNEL_CONFIG := ltx_defconfig
 TARGET_TOOLCHAIN_PREFIX := prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin/arm-eabi-
 else
 TARGET_PREBUILT_KERNEL := device/htc/runnymede/prebuilt/kernel/kernel
@@ -124,6 +117,3 @@ TARGET_BOOTANIMATION_USE_RGB565 := true
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/runnymede/bluetooth
-
-# Experimental
-#BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true

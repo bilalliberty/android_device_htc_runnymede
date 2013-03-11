@@ -160,7 +160,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
    FileManager \
    Torch \
-   FM \
    MusicFX
    
 # GPS / BT / Lights / Sensors
