@@ -23,6 +23,7 @@
 # WARNING: This line must come *before* including the proprietary
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
+USE_CAMERA_STUB := true
 
 # inherit from common msm7x30
 -include device/htc/msm7x30-common/BoardConfigCommon.mk
@@ -47,6 +48,8 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 BOARD_HAVE_HTC_FFC := true
 BOARD_USE_REVERSE_FFC := true
 BOARD_USES_LEGACY_OVERLAY := true
+COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
+TARGET_DISABLE_ARM_PIE := true
 
 # Audio
 BOARD_HAVE_FM_RADIO := true
