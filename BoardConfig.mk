@@ -24,7 +24,7 @@
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
 USE_CAMERA_STUB := true
-#TARGET_NO_RECOVERY := true
+recoveryex := true
 
 # inherit from common msm7x30
 -include device/htc/msm7x30-common/BoardConfigCommon.mk
@@ -51,11 +51,6 @@ BOARD_USE_REVERSE_FFC := true
 BOARD_USES_LEGACY_OVERLAY := true
 COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
 TARGET_DISABLE_ARM_PIE := true
-BUILD_TINY_ANDROID := false
-# Misc
-TARGET_HAVE_TSLIB := false
-#BOARD_EGL_NEEDS_LEGACY_FB := true
-TARGET_NO_HW_VSYNC := true
 
 # Audio
 BOARD_HAVE_FM_RADIO := true

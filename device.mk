@@ -24,7 +24,7 @@ $(call inherit-product, device/htc/runnymede/media_a1026.mk)
 $(call inherit-product, device/htc/runnymede/media_htcaudio.mk)
 
 # Inherit qcom proprietary blobs
-# $(call inherit-product, vendor/qcom/proprietary/qcom-vendor.mk)
+$(call inherit-product, vendor/qcom/proprietary/qcom-vendor.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/htc/runnymede/overlay
 
