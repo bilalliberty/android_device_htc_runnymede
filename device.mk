@@ -149,11 +149,12 @@ PRODUCT_PACKAGES += \
    e2fsck \
    setup_fs
 
-# Build extra non-CM packages
+# Build extra packages
 PRODUCT_PACKAGES += \
    MusicFX \
    Music \
-   Torch
+   Torch \
+   CMFileManager
    
 # BT and Lights
 PRODUCT_PACKAGES += \
