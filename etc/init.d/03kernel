@@ -44,8 +44,6 @@ echo "2048" > /sys/devices/virtual/bdi/179:0/read_ahead_kb;
 # kernel tweaks #
 ############################
 
-sysctl -w kernel.panic_on_oops=1;
-sysctl -w kernel.panic=30;
 sysctl -w kernel.threads-max=10000;
 
 ############################
