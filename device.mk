@@ -152,6 +152,7 @@ PRODUCT_PACKAGES += \
 # Build extra non-CM packages
 PRODUCT_PACKAGES += \
    MusicFX \
+   Music \
    Torch
    
 # BT and Lights
@@ -162,7 +163,10 @@ PRODUCT_PACKAGES += \
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml
+    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+    device/htc/runnymede/configs/android.hardware.sensor.gyroscope.xml:system/etc/permissions/
+android.hardware.sensor.gyroscope.xml
+
 
 # Extra properties
 PRODUCT_PROPERTY_OVERRIDES += \
