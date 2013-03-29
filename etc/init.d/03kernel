@@ -111,11 +111,11 @@ sysctl -w net.ipv4.conf.all.accept_redirects=0;
 sysctl -w net.ipv4.conf.default.accept_redirects=0;
 sysctl -w net.ipv4.conf.all.secure_redirects=0;
 sysctl -w net.ipv4.conf.default.secure_redirects=0;
-
+su
 # Disable normalize sleeper
 mount -t debugfs none /sys/kernel/debug
 echo NO_NORMALIZED_SLEEPER > /sys/kernel/debug/sched_features
-
+su
 # Battery tweaks (sleepers)
 mount -t debugfs none /sys/kernel/debug
 echo NO_NEW_FAIR_SLEEPERS > /sys/kernel/debug/sched_features;
