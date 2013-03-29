@@ -25,6 +25,8 @@
 # against the traditional rules of inheritance).
 USE_CAMERA_STUB := true
 recoveryex := true
+COMPILE_KERNEL := false
+GOO_RELEASE := true
 
 # inherit from common msm7x30
 -include device/htc/msm7x30-common/BoardConfigCommon.mk
@@ -92,8 +94,6 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
 TARGET_PROVIDES_LIBLIGHTS := true
 
-COMPILE_KERNEL := false
-
 ifeq ($(COMPILE_KERNEL),true)
 TARGET_KERNEL_SOURCE := kernel/htc/runnymede
 TARGET_KERNEL_CONFIG := ltx_defconfig
@@ -112,6 +112,14 @@ BOARD_HAS_NO_MISC_PARTITION := false
 BOARD_USES_QCOM_AUDIO_VOIPMUTE := false
 BOARD_USES_QCOM_AUDIO_RESETALL := false
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+
+# For Goo.im
+ifeq ($(GOO_RELEASE),true)
+	PRODUCT_PROPERTY_OVERRIDES += \
+        ro.goo.developerid=runnycm \      
+	ro.goo.rom=RootBox \
+	ro.goo.version=$(shell date +%y%m%d)
+endif
 
 # For Sdcard
 BOARD_VOLD_MAX_PARTITIONS := 34

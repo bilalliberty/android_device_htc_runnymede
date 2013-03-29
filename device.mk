@@ -164,9 +164,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
-    device/htc/runnymede/configs/android.hardware.sensor.gyroscope.xml:system/etc/permissions/
-android.hardware.sensor.gyroscope.xml
+    device/htc/runnymede/etc/permissions/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml
 
+# Add init.d scripts & hosts
+PRODUCT_COPY_FILES += \
+    device/htc/runnymede/etc/init.d/02swap:system/etc/init.d/02swap \
+    device/htc/runnymede/etc/init.d/03kernel:system/etc/init.d/03kernel \
+    device/htc/runnymede/etc/init.d/04calibration:system/etc/init.d/04calibration \
+    device/htc/runnymede/etc/hosts:system/etc/hosts
 
 # Extra properties
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -184,9 +189,6 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Set build date
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-
-# Fix bad lunch inheritance
-PRODUCT_NAME := cfx_runnymede
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi
