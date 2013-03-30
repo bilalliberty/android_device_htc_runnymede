@@ -180,10 +180,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.setupwizard.enable_bypass=1 \
     ro.com.google.locationfeatures=1 \
     ro.com.google.gmsversion=2.3_r3 \
-    persist.sys.scrollingcache=3 \
+    persist.sys.scrollingcache=3
+
+# Goo.im 
+PRODUCT_PROPERTY_OVERRIDES += \
     ro.goo.developerid=runnycm \      
     ro.goo.rom=RootBox \
-    ro.goo.board=runnymede \
+    ro.goo.board=runnymede
 	
 # Override /proc/sys/vm/dirty_ratio on UMS
 PRODUCT_PROPERTY_OVERRIDES += \
