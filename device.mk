@@ -153,6 +153,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
    MusicFX \
    Music \
+   Libdashplayer \
    Torch \
    CMFileManager
    
@@ -179,7 +180,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.setupwizard.enable_bypass=1 \
     ro.com.google.locationfeatures=1 \
     ro.com.google.gmsversion=2.3_r3 \
-    persist.sys.scrollingcache=3
+    persist.sys.scrollingcache=3 \
+    ro.goo.developerid=runnycm \      
+    ro.goo.rom=RootBox \
+    ro.goo.version=$(shell date +%y%m%d)
 	
 # Override /proc/sys/vm/dirty_ratio on UMS
 PRODUCT_PROPERTY_OVERRIDES += \
