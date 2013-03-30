@@ -52,18 +52,6 @@ sysctl -w net.ipv4.conf.default.accept_redirects=0;
 sysctl -w net.ipv4.conf.all.secure_redirects=0;
 sysctl -w net.ipv4.conf.default.secure_redirects=0;
 
-# Disable normalize sleeper
-su
-mount -t debugfs none /sys/kernel/debug
-echo NO_NORMALIZED_SLEEPER > /sys/kernel/debug/sched_features
-
-# Battery tweaks (sleepers)
-su
-mount -t debugfs none /sys/kernel/debug
-echo NO_NEW_FAIR_SLEEPERS > /sys/kernel/debug/sched_features;
-echo NO_NORMALIZED_SLEEPERS > /sys/kernel/debug/sched_features;
-umount /sys/kernel/debug
-
 # EXT4 Tweaks
 tune2fs -o journal_data_writeback /dev/block/mmcblk0p25 
 tune2fs -O ^has_journal /dev/block/mmcblk0p25 
