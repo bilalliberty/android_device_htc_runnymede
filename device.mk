@@ -184,7 +184,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Goo.im 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.goo.developerid=runnycm \      
+    ro.goo.developerid=runnycm \
     ro.goo.rom=RootBox \
     ro.goo.board=runnymede
 	
