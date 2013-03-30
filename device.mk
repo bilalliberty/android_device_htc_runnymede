@@ -183,6 +183,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.scrollingcache=3 \
     ro.goo.developerid=runnycm \      
     ro.goo.rom=RootBox \
+    ro.goo.board=runnymede \
     ro.goo.version=$(shell date +%y%m%d)
 	
 # Override /proc/sys/vm/dirty_ratio on UMS
