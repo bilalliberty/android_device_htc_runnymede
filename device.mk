@@ -153,7 +153,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
    MusicFX \
    Music \
-   Libdashplayer \
+   libdashplayer \
    Torch \
    CMFileManager
    
