@@ -174,7 +174,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.goo.developerid=runnycm \
     ro.goo.rom=aokp \
     ro.goo.board=runnymede \
-    ro.goo.version=$(shell date +%y%m%d)
+    ro.goo.version=$(shell date +%Y%m%d)
 	
 # Override /proc/sys/vm/dirty_ratio on UMS
 PRODUCT_PROPERTY_OVERRIDES += \
