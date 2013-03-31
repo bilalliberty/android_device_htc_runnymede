@@ -160,7 +160,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
    FileManager \
    Torch \
-   SwagPapers \
    MusicFX
    
 # GPS / BT / Lights / Sensors
