@@ -155,6 +155,7 @@ PRODUCT_PACKAGES += \
    Music \
    libdashplayer \
    Torch \
+   SwagPapers \
    CMFileManager
    
 # BT and Lights
