@@ -120,3 +120,41 @@ persist.sys.strictmode.disable=1
 ro.secure=0
 ro.allow.mock.location=0
 ro.debuggable=1
+ro.media.enc.jpeg.quality=100
+ro.HOME_APP_ADJ=1
+persist.adb.notify=0
+ro.media.dec.jpeg.memcap=12000000
+ro.media.enc.hprof.vid.bps=12000000
+debug.fb.rgb565 = 0
+debug.enabletr = true
+debug.qctwa.preservebuf = 1
+debug.hwc.skipcomposition = 0
+debug.egl.profiler = 0
+ro.ril.fast.dormancy.rule=0
+persist.sys.purgeable_assets=1
+
+# For sensor sleep control
+ro.ril.sensor.sleep.control=1
+
+# Render UI With GPU
+debug.sf.hw=1
+
+# Video Acceleration
+video.accelerate.hw=1
+debug.performance.tuning=1
+
+# Net tweaks
+net.tcp.buffersize.default=4096,87380,256960,4096, 16384,256960
+net.tcp.buffersize.wifi=4096,87380,256960,4096,163 84,256960
+net.tcp.buffersize.umts=4096,87380,256960,4096,163 84,256960
+net.tcp.buffersize.gprs=4096,87380,256960,4096,163 84,256960
+net.tcp.buffersize.edge=4096,87380,256960,4096,163 84,256960
+
+# Google DNS Tweak
+net.rmnet0.dns1=8.8.8.8
+net.rmnet0.dns2=8.8.4.4
+net.dns1=8.8.8.8
+net.dns2=8.8.4.4
+
+# Scrolling Responsiveness
+windowsmgr.max_events_per_sec=500

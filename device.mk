@@ -114,12 +114,9 @@ PRODUCT_COPY_FILES += \
 # Wifi/BT firmware
 PRODUCT_COPY_FILES += \
     device/htc/runnymede/firmware/BCM4330B1_002.001.003.0550.0568.hcd:system/etc/firmware/BCM4330B1_002.001.003.0550.0568.hcd \
-    device/htc/runnymede/firmware/fw_bcm4330_apsta_b1.bin:system/etc/firmware/fw_bcm4330_apsta_b1.bin \
-    device/htc/runnymede/firmware/fw_bcm4330_apsta_b2.bin:system/etc/firmware/fw_bcm4330_apsta_b2.bin \
-    device/htc/runnymede/firmware/fw_bcm4330_b2.bin:system/etc/firmware/fw_bcm4330_b2.bin \
-    device/htc/runnymede/firmware/fw_bcm4330_b1.bin:system/etc/firmware/fw_bcm4330_b1.bin \
-    device/htc/runnymede/firmware/fw_bcm4330_p2p_b2.bin:system/etc/firmware/fw_bcm4330_p2p_b2.bin \
-    device/htc/runnymede/firmware/fw_bcm4330_p2p_b1.bin:system/etc/firmware/fw_bcm4330_p2p_b1.bin
+    device/htc/runnymede/firmware/fw_bcmdhd.bin:system/etc/firmware/fw_bcmdhd.bin \
+    device/htc/runnymede/firmware/fw_bcmdhd_apsta.bin:system/etc/firmware/fw_bcmdhd_apsta.bin \
+    device/htc/runnymede/firmware/fw_bcmdhd_p2p.bin:system/etc/firmware/fw_bcmdhd_p2p.bin
 
 # Kernel
 ifeq ($(TARGET_PREBUILT_KERNEL),)
@@ -131,10 +128,6 @@ PRODUCT_COPY_FILES += \
 # Kernel modules
 PRODUCT_COPY_FILES += \
     device/htc/runnymede/prebuilt/kernel/bcmdhd.ko:system/lib/modules/bcmdhd.ko \
-    device/htc/runnymede/prebuilt/kernel/cpaccess.ko:system/lib/modules/cpaccess.ko \
-    device/htc/runnymede/prebuilt/kernel/dma_test.ko:system/lib/modules/dma_test.ko \
-    device/htc/runnymede/prebuilt/kernel/kineto_gan.ko:system/lib/modules/kineto_gan.ko \
-    device/htc/runnymede/prebuilt/kernel/reset_modem.ko:system/lib/modules/reset_modem.ko \
     device/htc/runnymede/prebuilt/kernel/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko
 endif
 
@@ -159,7 +152,15 @@ PRODUCT_PACKAGES += \
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml
+    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+    device/htc/runnymede/etc/permissions/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml
+
+# Add init.d scripts & hosts
+PRODUCT_COPY_FILES += \
+    device/htc/runnymede/etc/init.d/02swap:system/etc/init.d/02swap \
+    device/htc/runnymede/etc/init.d/03kernel:system/etc/init.d/03kernel \
+    device/htc/runnymede/etc/init.d/04calibration:system/etc/init.d/04calibration \
+    device/htc/runnymede/etc/hosts:system/etc/hosts
 
 # Extra properties
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -167,6 +168,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.locationfeatures=1 \
     ro.com.google.gmsversion=2.3_r3 \
     persist.sys.scrollingcache=3
+
+# Goo.im 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.goo.developerid=runnycm \
+    ro.goo.rom=RootBox \
+    ro.goo.board=runnymede \
+    ro.goo.version=$(shell date +%y%m%d)
 	
 # Override /proc/sys/vm/dirty_ratio on UMS
 PRODUCT_PROPERTY_OVERRIDES += \

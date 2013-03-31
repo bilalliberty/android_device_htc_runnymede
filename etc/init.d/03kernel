@@ -1,0 +1,67 @@
+#!/system/bin/sh
+#
+############################
+# kernel tweaks #
+############################
+
+sysctl -w kernel.threads-max=10000;
+
+############################
+# Filesystem tweaks #
+############################
+sysctl -w fs.lease-break-time=10;
+sysctl -w fs.file-max=65536;
+
+############################
+# Net Speed tweaks #
+############################
+
+# UnderUtilized Networking Tweaks
+sysctl -w net.ipv4.tcp_congestion_control=cubic; 
+
+# Hardening the TCP/IP stack to SYN attacks
+sysctl -w net.ipv4.conf.all.rp_filter=1;
+sysctl -w net.ipv4.conf.default.rp_filter=1;
+sysctl -w net.ipv4.tcp_synack_retries=2;
+sysctl -w net.ipv4.tcp_syn_retries=2;
+sysctl -w net.ipv4.tcp_max_syn_backlog=1024;
+sysctl -w net.ipv4.tcp_max_tw_buckets=16384; 
+sysctl -w net.ipv4.icmp_echo_ignore_all=1; 
+sysctl -w net.ipv4.icmp_ignore_bogus_error_responses=1; 
+sysctl -w net.ipv4.tcp_no_metrics_save=1; 
+sysctl -w net.ipv4.tcp_fin_timeout=15;
+sysctl -w net.ipv4.tcp_keepalive_time=1800;
+sysctl -w net.ipv4.ip_forward=0; 
+sysctl -w net.ipv4.tcp_moderate_rcvbuf=1; 
+sysctl -w net.ipv4.route.flush=1;
+sysctl -w net.ipv4.udp_rmem_min=6144;
+sysctl -w net.ipv4.udp_wmem_min=6144;
+sysctl -w net.ipv4.tcp_rfc1337=1;
+sysctl -w net.ipv4.ip_no_pmtu_disc=0;
+sysctl -w net.ipv4.tcp_ecn=0;
+sysctl -w net.ipv4.tcp_sack=1;
+sysctl -w net.ipv4.tcp_fack=1;
+
+# Don't accept source routing
+sysctl -w net.ipv4.conf.default.accept_source_route=0 ;
+sysctl -w net.ipv4.conf.all.accept_source_route=0;
+
+# Don't accept redirects
+sysctl -w net.ipv4.conf.all.accept_redirects=0;
+sysctl -w net.ipv4.conf.default.accept_redirects=0;
+sysctl -w net.ipv4.conf.all.secure_redirects=0;
+sysctl -w net.ipv4.conf.default.secure_redirects=0;
+
+# EXT4 Tweaks
+tune2fs -o journal_data_writeback /dev/block/mmcblk0p25 
+tune2fs -O ^has_journal /dev/block/mmcblk0p25 
+tune2fs -o journal_data_writeback /dev/block/mmcblk0p30
+tune2fs -O ^has_journal /dev/block/mmcblk0p30
+tune2fs -o journal_data_writeback /dev/block/mmcblk0p29
+tune2fs -O ^has_journal /dev/block/mmcblk0p29
+
+# best IO scheduler for our device
+echo "sio" > /sys/block/mmcblk0/queue/scheduler
+
+# SD card speed tweak 
+echo "2048" > /sys/devices/virtual/bdi/179:0/read_ahead_kb;

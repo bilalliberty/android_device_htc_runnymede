@@ -102,16 +102,6 @@ on boot
     chown system system /sys/class/leds/jogball-backlight/period
     chown system system /sys/class/leds/button-backlight/brightness
     chown system system /sys/class/leds/lcd-backlight/brightness
-
-    chown root.system /sys/devices/system/cpu/cpufreq/ondemand/boostpulse
-    chmod 664 /sys/devices/system/cpu/cpufreq/ondemand/boostpulse
-    chown root.system /sys/devices/system/cpu/cpufreq/interactive/boostpulse
-    chmod 664 /sys/devices/system/cpu/cpufreq/interactive/boostpulse
-
-    # Flash storage isn't a good entropy source, and only causes locking
-    # overhead in the kernel. Turn it off.
-    write /sys/block/mmcblk0/queue/add_random 0
-
     #set radio_feedback permissions
     chown radio radio /dev/radio_feedback
     chmod 0660 /dev/radio_feedback

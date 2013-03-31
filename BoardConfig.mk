@@ -55,7 +55,7 @@ TARGET_DISABLE_ARM_PIE := true
 BOARD_HAVE_FM_RADIO := true
 
 # Wifi related defines
-WIFI_BAND                        := 802_11_ABG
+WIFI_BAND                        := 802_11_BG
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
