@@ -49,6 +49,12 @@ PRODUCT_COPY_FILES += device/htc/runnymede/configs/vold.fstab:system/etc/vold.fs
 
 # Audio DSP Profiles
 PRODUCT_COPY_FILES += \
+    device/htc/runnymede/dsp/AdieHWCodec.csv:system/etc/AdieHWCodec.csv \
+    device/htc/runnymede/dsp/AudioBTID.csv:system/etc/AudioBTID.csv \
+    device/htc/runnymede/dsp/CodecDSPID.txt:system/etc/CodecDSPID.txt \
+    device/htc/runnymede/dsp/CodecDSPID_WB.txt:system/etc/CodecDSPID_WB.txt \
+    device/htc/runnymede/dsp/TPA2051_CFG.csv:system/etc/TPA2051_CFG.csv \
+    device/htc/runnymede/dsp/TPA2051_CFG_BEATS_HW.csv:system/etc/TPA2051_CFG_BEATS_HW.csv \
     device/htc/runnymede/dsp/soundimage/Sound_Bass_Booster.txt:system/etc/soundimage/Sound_Bass_Booster.txt \
     device/htc/runnymede/dsp/soundimage/Sound_Blues.txt:system/etc/soundimage/Sound_Blues.txt \
     device/htc/runnymede/dsp/soundimage/Sound_Classical.txt:system/etc/soundimage/Sound_Classical.txt \
@@ -114,6 +120,10 @@ PRODUCT_COPY_FILES += \
 
 # Wifi/BT firmware
 PRODUCT_COPY_FILES += \
+    device/htc/runnymede/firmware/default.acdb:system/etc/firmware/default.acdb \
+    device/htc/runnymede/firmware/default_mfg.acdb:system/etc/firmware/default_mfg.acdb \
+    device/htc/runnymede/firmware/default_org.acdb:system/etc/firmware/default_org.acdb \
+    device/htc/runnymede/firmware/default_org_wb.acdb:system/etc/firmware/default_org_wb.acdb \
     device/htc/runnymede/firmware/BCM4330B1_002.001.003.0550.0568.hcd:system/etc/firmware/BCM4330B1_002.001.003.0550.0568.hcd \
     device/htc/runnymede/firmware/fw_bcmdhd.bin:system/etc/firmware/fw_bcmdhd.bin \
     device/htc/runnymede/firmware/fw_bcmdhd_apsta.bin:system/etc/firmware/fw_bcmdhd_apsta.bin \
