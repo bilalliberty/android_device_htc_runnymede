@@ -7,7 +7,7 @@ ro.sf.lcd_density=240
 
 # For Ril and signal
 rild.libpath=/system/lib/libhtc_ril.so
-ro.telephony.ril.v3=datacallapn,signalstrengthgsm
+ro.telephony.ril.v3=signalstrength,datacallapn
 
 # RilLibPath for Ganlite
 rild.libpath.ganlite=/system/lib/librilswitch.so
