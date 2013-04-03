@@ -91,12 +91,12 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
 TARGET_PROVIDES_LIBLIGHTS := true
 
-COMPILE_KERNEL := false
+COMPILE_KERNEL := true
 
 ifeq ($(COMPILE_KERNEL),true)
 TARGET_KERNEL_SOURCE := kernel/htc/runnymede
 TARGET_KERNEL_CONFIG := ltx_defconfig
-TARGET_TOOLCHAIN_PREFIX := kernel/htc/runnymede/toolchain/arm-linux-androideabi-4.6/prebuilt/linux-x86/bin/arm-linux-androideabi-
+TARGET_TOOLCHAIN_PREFIX := prebuilts/gcc/linux-x86/arm/arm-eabi-4.6/bin/arm-eabi-
 else
 TARGET_PREBUILT_KERNEL := device/htc/runnymede/prebuilt/kernel/kernel
 endif
