@@ -174,8 +174,6 @@ PRODUCT_COPY_FILES += \
 
 # Add init.d scripts & hosts
 PRODUCT_COPY_FILES += \
-    device/htc/runnymede/etc/init.d/02swap:system/etc/init.d/02swap \
-    device/htc/runnymede/etc/init.d/03kernel:system/etc/init.d/03kernel \
     device/htc/runnymede/etc/init.d/04calibration:system/etc/init.d/04calibration \
     device/htc/runnymede/etc/hosts:system/etc/hosts
 
