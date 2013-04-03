@@ -130,7 +130,7 @@ PRODUCT_COPY_FILES += \
     device/htc/runnymede/firmware/fw_bcmdhd_p2p.bin:system/etc/firmware/fw_bcmdhd_p2p.bin
 
 # Kernel
-ifeq ($(TARGET_PREBUILT_KERNEL),)
+ifneq ($(TARGET_PREBUILT_KERNEL),)
 	LOCAL_KERNEL := device/htc/runnymede/prebuilt/kernel/kernel
 
 PRODUCT_COPY_FILES += \
