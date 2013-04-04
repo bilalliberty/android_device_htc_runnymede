@@ -1,230 +1,81 @@
 #
 # system.prop for runnymede
 #
-## STOCK TWEAKS ##
-# For Display
 ro.sf.lcd_density=240
 
-# For Ril and signal
-rild.libpath=/system/lib/libhtc_ril.so
-ro.telephony.ril.v3=signalstrength,datacallapn
+#disable system restrictions for all builds
+persist.sys.strictmode.visual=0
+ro.secure=0
 
-# RilLibPath for Ganlite
-rild.libpath.ganlite=/system/lib/librilswitch.so
-rilswitch.vendorlibpath=/system/lib/libhtc_ril.so
-rilswitch.ganlibpath=/system/lib/libganril.so
+debug.fb.rgb565 = 0
+
+com.qc.hardware=true
+com.qc.hdmi_out=false
 
 # Modify MMS APN retry timer from 5s to 2s.
-ro.gsm.2nd_data_retry_config = max_retries=3, 2000, 2000, 2000
+ro.gsm.2nd_data_retry_config=max_retries=3, 2000, 2000, 2000
+
+ro.telephony.ril.v3=signalstrength,datacallapn
+rild.libpath=/system/lib/libhtc_ril.so
+
+ro.ril.ecc.HTC-GCC=999,112,997
+ro.ril.ecc.HTC-WWE=999
+ro.ril.ecc.HTC-Dutch=112
+ro.ril.ecc.HTC-FRA=112,911
+ro.ril.ecc.HTC-ITA=112,911
+ro.ril.ecc.HTC-EastEurope=911
+ro.ril.enable.a52.HTC-ITA=1
+ro.ril.enable.a53.HTC-ITA=1
+ro.ril.enable.a52=0
+ro.ril.enable.a53=1
+ro.ril.disable.fd.plmn.prefix=23402,23410,23411,23420
+ro.ril.enable.sdr=1
+ro.ril.enable.amr.wideband=0
+
+# vision RF team request
+ro.ril.enable.dtm = 0
+ro.ril.gprsclass = 12
+ro.ril.hsdpa.category = 8
+ro.ril.hsupa.category = 6
+ro.ril.hsxpa = 2
 
 # Default network type.
 # 0 => WCDMA preferred.
 ro.telephony.default_network=0
 
-# System props for the data modules
-ro.use_data_netmgrd=true
-persist.data_netmgrd_nint=8
+# Modify MTU from 1500 to 1472 on 3G network
+ro.ril.set.mtu1472=1
 
-# Fow wifi interface
 wifi.interface=wlan0
+wifi.supplicant_scan_interval=30
+
+mobiledata.interfaces=rmnet0
 
 # The OpenGL ES API level that is natively supported by this device.
 # This is a 16.16 fixed point number
 ro.opengles.version = 131072
 
+# For the default value of agps
+ro.ril.def.agps.mode = 2
+
 # For HSDPA low throughput
-#ro.ril.disable.power.collapse = 1
-
-# Release Bluetooth HW/SW information
-ro.bt.chipset  = Broadcom BCM4329-B1
-ro.bt.stack  = Broadcom BTL-A
-ro.bt.stack.version	= 2.0.50.032
-ro.bt.profiles	= 4270339
-
-# Properties of BTLA stack
-service.brcm.bt.activation = 0
-service.brcm.bt.srv_active = 0
-service.brcm.bt.hcid_active = 0
-service.brcm.bt.btld = 0
-service.brcm.bt.btld_pid = 0
-service.brcm.bt.avrcp_pass_thru = 0
-service.brcm.bt.avrcp_toggle = 1
-service.brcm.bt.local_name =
+ro.ril.disable.power.collapse = 1
 
 # Vivo China NEL use
 ro.ril.update.vivo.acoustic = 1
 
-# Properties of Scalado Denoise param.
-postprocess.iso_midband = 400
-postprocess.denoise_level = 5
-
-# Following property will be reference by Settings.
-ro.product.processor = 1.5 GHz
-ro.product.ram = 768MB
-ro.product.display_resolution = 4.7 inch WVGA resolution
-ro.product.main_camera = 8M
-ro.product.front_camera = 1.3M
-ro.product.bluetooth = 3.0
-ro.product.wifi = 802.11 b/g/n
-
-# For emmc phone storage
-ro.phone_fat = 1
-
-# For ext4 file system
-ro.ext4fs = 1
-
-# Dump native call stack when an ANR happens to com.htc.launcher.
-profiler.anr_dump_native_uid = 9999
-
-# Properties for supporting framework features
-ro.htc.framework.screencapture = true
-
-# For QC perf binary hooks
-# src:vendor/qcom/proprietary/android-perf/release/lib/<CPU arch>/libqc-opt.so
-ro.vendor.extension_library=/system/lib/libqc-opt.so
-
-# For autobot car pc
-ro.htc.htcmode.data.path = /dev/ttyHSUSB3
-
-# USB Mounting
-persist.sys.usb.config=mass_storage,adb
-
-# Other things
-persist.sys.strictmode.visual=0
-persist.sys.strictmode.disable=1
-ro.secure=0
-ro.allow.mock.location=0
-ro.debuggable=1
-
-############ NEW TWEAKS ############
-# To help us in debuging
-debug.fb.rgb565 = 0
-debug.enabletr = true
-debug.qctwa.preservebuf = 1
-debug.hwc.skipcomposition = 0
-debug.egl.profiler = 0
-
-# Faster Streaming
-media.stagefright.enable-player=true
-media.stagefright.enable-meta=true
-media.stagefright.enable-scan=true
-media.stagefright.enable-http=true
-media.stagefright.enable-aac=true
-media.stagefright.enable-qcp=true
-media.stagefright.enable-record=true
-media.stagefright.enable-record=false
-
-# Net Speed Tweaks
-net.tcp.buffersize.default=4096,87380,256960,4096,16384,256960
-net.tcp.buffersize.wifi=4096,87380,256960,4096,16384,256960
-net.tcp.buffersize.umts=4096,87380,256960,4096,16384,256960
-net.tcp.buffersize.gprs=4096,87380,256960,4096,16384,256960
-net.tcp.buffersize.edge=4096,87380,256960,4096,16384,256960
-net.tcp.buffersize.hspa=4096,87380,256960,4096,163 84,256960
-net.tcp.buffersize.hspda=4096,87380,256960,4096,16 384,256960
-net.tcp.buffersize.evdo_b=6144,87380,1048576,6144,87380,1048576
-
-# Google DNS -- fastest DNS
-net.rmnet0.dns1=8.8.8.8
-net.rmnet0.dns2=8.8.4.4
-net.ppp0.dns1=8.8.8.8
-net.ppp0.dns2=8.8.4.4
-net.dns1=8.8.8.8
-net.dns2=8.8.4.4
-
-# No Delay In Making Call
-ro.telephony.call_ring.delay=0
-ring.delay=0
-
-# Disable WiFi calling for EU models
-ro.ril.enable.ganlite=0
-
-# Noise Cancellation Off
-htc.audio.alt.enable=0
-htc.audio.hac.enable=0
-
-# Proximity Tweaks
-ro.lge.proximity.delay=25
-mot.proximity.delay=25
-
-# Battery Tweaks
-pm.sleep_mode=1
-ro.ril.disable.power.collapse=0
-ro.ril.fast.dormancy.rule=0
-ro.config.hw_power_saving=1
-wifi.supplicant_scan_interval=180
-
-# Frees More RAM
-persist.sys.purgeable_assets=1
-
-# Disable strict mode checking
-persist.android.strictmode=0
-persist.sys.strictmode.disable=1
-persist.sys.strictmode.visual=0
-
-# Kernel Tweaks
-ro.kernel.checkjni=0
-ro.kernel.android.checkjni=0
-
-# Recording Audio Workaround
-ro.camera.sound.disabled=1
-
-# Signal Tweaks
-ro.ril.enable.amr.wideband=1
-persist.cust.tel.eons=1
-ro.config.hw_fast_dormancy=1
-ro.ril.hsxpa=2
-ro.ril.gprsclass=12
-ro.ril.enable.dtm=1
-ro.ril.hsdpa.category=8
-ro.ril.enable.a53=1
-ro.ril.enable.3g.prefix=1
-ro.ril.htcmaskw1.bitmask=4294967295
-ro.ril.htcmaskw1=14449
-ro.ril.hsupa.category=6
-
-# Disable data in roaming
-ro.com.android.dataroaming=false
-
-# More volume steps in call
-ro.config.vc_call_steps=20
-
-# Fast Reboot
-persist.sys.shutdown.mode=hibernate
-ro.config.hw_quickpoweron=true
-
-# Better Responsiveness & Speed
-windowsmgr.max_events_per_sec=240
-
-# Other Tweaks
-dalvik.vm.execution-mode=int:jit
-vm.stat_interval=1
-
-# For QCOM harware on phone
-com.qc.hardware=true
-com.qc.hdmi_out=false
-
-# Disable Logers (battery + performance gain)
-profiler.force_disable_err_rpt=1
-profiler.force_disable_ulog=1
-ro.config.htc.nocheckin=1
-ro.config.nocheckin=1
-
-# For sensor sleep control
-ro.ril.sensor.sleep.control=1
-
-# USB Mounting
-persist.sys.usb.config=mass_storage,adb
-
-# For the default value of AGPS
-ro.ril.def.agps.mode=2
-ro.ril.def.agps.feature=1
-
-# Enables 270 Degree Rotation
-windowsmgr.support_rotation_270=true;
-# Following property will be reference by Settings.
+# Hardware Info
 ro.device.chipset=Qualcomm Snapdragon MSM8255
 ro.device.gpu=Adreno 205
 ro.device.front_cam=1.3 Megapixels
 ro.device.rear_cam=8 Megapixels
 ro.device.screen_res=480x800
+
+# USB Mounting
+persist.sys.usb.config=mass_storage,adb
+
+# Disable kernel error checking
+ro.kernel.android.checkjni=0
+
+# Disable Sending Usage Data
+ro.config.nocheckin=1
