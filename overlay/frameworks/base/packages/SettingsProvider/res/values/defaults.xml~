@@ -18,7 +18,4 @@
 -->
 <resources>
     <integer name="def_screen_off_timeout">30000</integer>
-
-    <!-- 0 == never, 1 == only when plugged in, 2 == always -->
-    <integer name="def_wifi_sleep_policy">1</integer>
 </resources>

@@ -152,6 +152,7 @@ PRODUCT_PACKAGES += \
     VideoEditor \
     VoiceDialer \
     QuickSearchBox \
+    Thinkfree \
     CMFileManager
 
 # BT and Lights
