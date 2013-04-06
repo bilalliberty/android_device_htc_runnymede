@@ -79,3 +79,6 @@ ro.kernel.android.checkjni=0
 
 # Disable Sending Usage Data
 ro.config.nocheckin=1
+
+# Enable HD voice for some carriers
+ro.ril.enable.amr.wideband=1
