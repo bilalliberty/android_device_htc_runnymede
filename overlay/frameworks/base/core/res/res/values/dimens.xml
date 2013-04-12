@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Fix for date cut off in lockscreen -->
+	<dimen name="kg_status_clock_font_size">75dp</dimen>
+</resources>
